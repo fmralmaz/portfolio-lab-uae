@@ -110,7 +110,32 @@ function calculatePortfolio() {
 
     document.getElementById("cashAmount").textContent =
         "AED " + cashAmount.toLocaleString("en-US");
+    // Update allocation chart
+    document.getElementById("stocksBar").style.width =
+        stocks + "%";
 
+    document.getElementById("bondsBar").style.width =
+        bonds + "%";
+
+    document.getElementById("goldBar").style.width =
+        gold + "%";
+
+    document.getElementById("cashBar").style.width =
+        cash + "%";
+
+
+    // Update chart percentages
+    document.getElementById("stocksPercent").textContent =
+        stocks + "%";
+
+    document.getElementById("bondsPercent").textContent =
+        bonds + "%";
+
+    document.getElementById("goldPercent").textContent =
+        gold + "%";
+
+    document.getElementById("cashPercent").textContent =
+        cash + "%";
     // Success message
     message.textContent =
         "Portfolio allocation successfully calculated.";

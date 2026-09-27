@@ -817,3 +817,75 @@ footer p {
         border-right: none;
     }
 }
+/* =========================
+   5-YEAR GROWTH CHART
+   ========================= */
+
+.growth-chart-section {
+    padding: 40px 35px 45px;
+    border-top: 1px solid #e2e2e2;
+}
+
+.growth-chart {
+    height: 280px;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    gap: 30px;
+    padding: 20px 20px 0;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.growth-column {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+}
+
+.growth-bar {
+    width: 70%;
+    min-height: 20px;
+    background: #111;
+    border-radius: 5px 5px 0 0;
+    transition: height 0.5s ease;
+}
+
+.growth-column span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .growth-chart-section {
+        padding: 30px 20px 35px;
+    }
+
+    .growth-chart {
+        height: 220px;
+        gap: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .growth-bar {
+        width: 85%;
+    }
+
+    .growth-column span {
+        font-size: 10px;
+    }
+
+}

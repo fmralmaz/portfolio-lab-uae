@@ -1,511 +1,542 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PortfolioLab UAE | Investment Simulator</title>
+    <title>PortfolioLab UAE</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<nav>
-    <div class="logo">PortfolioLab UAE</div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">PortfolioLab UAE</a>
 
-    <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#simulator">Simulator</a>
-        <a href="#growth">Growth</a>
-        <a href="#learn">Learn</a>
-    </div>
-</nav>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#home" data-en="Home" data-ar="الرئيسية">Home</a>
+                    <a href="#simulator" data-en="Simulator" data-ar="المحاكي">Simulator</a>
+                    <a href="#growth" data-en="Growth" data-ar="النمو">Growth</a>
+                    <a href="#learn" data-en="Learn" data-ar="تعلّم">Learn</a>
+                </div>
 
+                <button id="languageButton" class="language-button">
+                    العربية
+                </button>
+            </div>
+        </div>
+    </nav>
 
-<header id="home">
+    <main>
 
-    <div class="hero-content">
-
-        <p class="tagline">INVESTMENT EDUCATION • UAE</p>
-
-        <h1>
-            Build a portfolio.<br>
-            Understand the risk.
-        </h1>
-
-        <p class="hero-text">
-            An educational investment simulator that helps
-            students explore diversification, portfolio
-            allocation and potential growth.
-        </p>
-
-        <a href="#simulator" class="button">
-            Start simulating →
-        </a>
-
-    </div>
-
-</header>
-
-
-<main>
-
-<section id="simulator">
-
-    <div class="section-heading">
-
-        <p class="small-title">PORTFOLIO SIMULATOR</p>
-
-        <h2>Start with AED 100,000.</h2>
-
-        <p>
-            Create a fictional portfolio and explore
-            how different asset allocations can affect
-            potential returns.
-        </p>
-
-    </div>
-
-
-    <div class="simulator-layout">
-
-
-        <div class="simulator-card">
-
-            <h3>Portfolio allocation</h3>
-
-            <p class="card-description">
-                Choose how you want to allocate your
-                fictional AED 100,000 portfolio.
-            </p>
-
-
-            <div class="preset-section">
-
-                <p class="preset-title">
-                    TRY A PRESET
+        <!-- HERO -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <p class="eyebrow"
+                   data-en="FINANCIAL EDUCATION"
+                   data-ar="التثقيف المالي">
+                    FINANCIAL EDUCATION
                 </p>
 
-                <div class="preset-buttons">
+                <h1 data-en="Build. Balance. Understand."
+                    data-ar="ابنِ. وازن. افهم.">
+                    Build. Balance. Understand.
+                </h1>
 
-                    <button
-                        type="button"
-                        class="preset-button"
-                        id="conservativeButton">
+                <p class="hero-text"
+                   data-en="An educational investment portfolio simulator designed to help students understand diversification, risk, and portfolio growth."
+                   data-ar="محاكي تعليمي للمحافظ الاستثمارية يساعد الطلاب على فهم التنويع والمخاطر ونمو المحافظ الاستثمارية.">
+                    An educational investment portfolio simulator designed to help students understand diversification, risk, and portfolio growth.
+                </p>
+
+                <a href="#simulator"
+                   class="hero-button"
+                   data-en="Try the Simulator"
+                   data-ar="جرّب المحاكي">
+                    Try the Simulator
+                </a>
+            </div>
+        </section>
+
+
+        <!-- SIMULATOR -->
+        <section id="simulator" class="section">
+            <div class="section-header">
+                <p class="eyebrow"
+                   data-en="PORTFOLIO SIMULATOR"
+                   data-ar="محاكي المحفظة">
+                    PORTFOLIO SIMULATOR
+                </p>
+
+                <h2 data-en="Create Your Portfolio"
+                    data-ar="أنشئ محفظتك الاستثمارية">
+                    Create Your Portfolio
+                </h2>
+
+                <p data-en="Start with a fictional AED 100,000 portfolio and choose how you want to allocate it."
+                   data-ar="ابدأ بمحفظة افتراضية بقيمة 100,000 درهم واختر كيفية توزيعها.">
+                    Start with a fictional AED 100,000 portfolio and choose how you want to allocate it.
+                </p>
+            </div>
+
+            <!-- PRESETS -->
+            <div class="presets">
+                <h3 data-en="Quick Presets"
+                    data-ar="خيارات سريعة">
+                    Quick Presets
+                </h3>
+
+                <div class="preset-buttons">
+                    <button id="conservativeButton"
+                            class="preset-button"
+                            data-en="Conservative"
+                            data-ar="محافظ">
                         Conservative
                     </button>
 
-                    <button
-                        type="button"
-                        class="preset-button"
-                        id="balancedButton">
+                    <button id="balancedButton"
+                            class="preset-button"
+                            data-en="Balanced"
+                            data-ar="متوازن">
                         Balanced
                     </button>
 
-                    <button
-                        type="button"
-                        class="preset-button"
-                        id="growthButton">
+                    <button id="growthButton"
+                            class="preset-button"
+                            data-en="Growth"
+                            data-ar="نمو">
                         Growth
                     </button>
+                </div>
+            </div>
 
+
+            <!-- INPUTS -->
+            <div class="simulator-grid">
+
+                <div class="input-card">
+                    <label for="stocks"
+                           data-en="Stocks"
+                           data-ar="الأسهم">
+                        Stocks
+                    </label>
+
+                    <div class="input-row">
+                        <input type="number" id="stocks" value="60" min="0" max="100">
+                        <span>%</span>
+                    </div>
+
+                    <p data-en="Higher potential growth and higher risk."
+                       data-ar="إمكانية نمو أعلى مع مخاطر أعلى.">
+                        Higher potential growth and higher risk.
+                    </p>
+                </div>
+
+
+                <div class="input-card">
+                    <label for="bonds"
+                           data-en="Bonds"
+                           data-ar="السندات">
+                        Bonds
+                    </label>
+
+                    <div class="input-row">
+                        <input type="number" id="bonds" value="20" min="0" max="100">
+                        <span>%</span>
+                    </div>
+
+                    <p data-en="Generally lower risk than stocks."
+                       data-ar="عادةً ما تكون أقل مخاطرة من الأسهم.">
+                        Generally lower risk than stocks.
+                    </p>
+                </div>
+
+
+                <div class="input-card">
+                    <label for="gold"
+                           data-en="Gold"
+                           data-ar="الذهب">
+                        Gold
+                    </label>
+
+                    <div class="input-row">
+                        <input type="number" id="gold" value="10" min="0" max="100">
+                        <span>%</span>
+                    </div>
+
+                    <p data-en="Can provide diversification."
+                       data-ar="يمكن أن يساعد في تنويع المحفظة.">
+                        Can provide diversification.
+                    </p>
+                </div>
+
+
+                <div class="input-card">
+                    <label for="cash"
+                           data-en="Cash"
+                           data-ar="النقد">
+                        Cash
+                    </label>
+
+                    <div class="input-row">
+                        <input type="number" id="cash" value="10" min="0" max="100">
+                        <span>%</span>
+                    </div>
+
+                    <p data-en="Lower risk and higher liquidity."
+                       data-ar="مخاطر أقل وسيولة أعلى.">
+                        Lower risk and higher liquidity.
+                    </p>
                 </div>
 
             </div>
 
 
-            <label>
-                Stocks (%)
-                <input
-                    type="number"
-                    id="stocks"
-                    value="60"
-                    min="0"
-                    max="100">
-            </label>
-
-
-            <label>
-                Bonds (%)
-                <input
-                    type="number"
-                    id="bonds"
-                    value="20"
-                    min="0"
-                    max="100">
-            </label>
-
-
-            <label>
-                Gold (%)
-                <input
-                    type="number"
-                    id="gold"
-                    value="10"
-                    min="0"
-                    max="100">
-            </label>
-
-
-            <label>
-                Cash (%)
-                <input
-                    type="number"
-                    id="cash"
-                    value="10"
-                    min="0"
-                    max="100">
-            </label>
-
-
-            <button
-                type="button"
-                id="calculateButton">
-                Calculate portfolio
+            <button id="calculateButton"
+                    class="calculate-button"
+                    data-en="Calculate Portfolio"
+                    data-ar="احسب المحفظة">
+                Calculate Portfolio
             </button>
 
-            <p
-                id="allocationMessage"
-                class="allocation-message">
-            </p>
+            <p id="allocationMessage" class="allocation-message"></p>
 
-        </div>
 
+            <!-- RESULTS -->
+            <div class="results-card">
 
-        <div class="portfolio-result">
+                <div class="result">
+                    <span data-en="Portfolio Value"
+                          data-ar="قيمة المحفظة">
+                        Portfolio Value
+                    </span>
 
-            <p class="result-label">
-                PORTFOLIO VALUE
-            </p>
-
-            <h3>
-                AED
-                <span id="portfolioValue">
-                    100,000.00
-                </span>
-            </h3>
-
-            <div class="result-line">
-                <span>Estimated return</span>
-                <strong id="portfolioReturn">0.00%</strong>
-            </div>
-
-            <div class="result-line">
-                <span>Estimated profit/loss</span>
-
-                <strong>
-                    AED
-                    <span id="portfolioProfit">0.00</span>
-                </strong>
-            </div>
-
-            <div class="result-line">
-                <span>Risk level</span>
-                <strong id="riskLevel">Moderate</strong>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="allocation-section">
-
-    <div class="chart-container">
-
-        <h3>Portfolio allocation</h3>
-
-        <div class="allocation-chart">
-
-            <div
-                id="stocksBar"
-                class="chart-bar stocks-bar"
-                style="width:60%;">
-            </div>
-
-            <div
-                id="bondsBar"
-                class="chart-bar bonds-bar"
-                style="width:20%;">
-            </div>
-
-            <div
-                id="goldBar"
-                class="chart-bar gold-bar"
-                style="width:10%;">
-            </div>
-
-            <div
-                id="cashBar"
-                class="chart-bar cash-bar"
-                style="width:10%;">
-            </div>
-
-        </div>
-
-
-        <div class="chart-legend">
-
-            <div>
-                <span class="legend-dot stocks-dot"></span>
-                Stocks
-                <strong id="stocksPercent">60%</strong>
-            </div>
-
-            <div>
-                <span class="legend-dot bonds-dot"></span>
-                Bonds
-                <strong id="bondsPercent">20%</strong>
-            </div>
-
-            <div>
-                <span class="legend-dot gold-dot"></span>
-                Gold
-                <strong id="goldPercent">10%</strong>
-            </div>
-
-            <div>
-                <span class="legend-dot cash-dot"></span>
-                Cash
-                <strong id="cashPercent">10%</strong>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="section-heading">
-
-        <p class="small-title">YOUR ALLOCATION</p>
-
-        <h2>Where is your money going?</h2>
-
-    </div>
-
-
-    <div class="allocation-grid">
-
-        <div class="allocation-card">
-            <span>STOCKS</span>
-            <strong id="stocksAmount">AED 60,000</strong>
-            <p>Higher potential growth with higher volatility.</p>
-        </div>
-
-        <div class="allocation-card">
-            <span>BONDS</span>
-            <strong id="bondsAmount">AED 20,000</strong>
-            <p>Generally lower volatility than stocks.</p>
-        </div>
-
-        <div class="allocation-card">
-            <span>GOLD</span>
-            <strong id="goldAmount">AED 10,000</strong>
-            <p>An asset that can diversify a portfolio.</p>
-        </div>
-
-        <div class="allocation-card">
-            <span>CASH</span>
-            <strong id="cashAmount">AED 10,000</strong>
-            <p>Provides liquidity and avoids market exposure.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<section id="growth" class="growth-section">
-
-    <div class="section-heading">
-
-        <p class="small-title">PORTFOLIO GROWTH</p>
-
-        <h2>
-            What could your portfolio look like over 5 years?
-        </h2>
-
-        <p>
-            This educational projection uses the estimated
-            annual return from your portfolio allocation.
-        </p>
-
-    </div>
-
-
-    <div class="growth-card">
-
-        <div class="growth-header">
-
-            <div>
-                <span>STARTING VALUE</span>
-                <strong>AED 100,000</strong>
-            </div>
-
-            <div>
-                <span>ESTIMATED ANNUAL RETURN</span>
-                <strong id="growthRate">6.30%</strong>
-            </div>
-
-        </div>
-
-
-        <div class="growth-years">
-
-            <div>
-                <span>YEAR 1</span>
-                <strong id="year1">AED 106,300</strong>
-            </div>
-
-            <div>
-                <span>YEAR 2</span>
-                <strong id="year2">AED 112,997</strong>
-            </div>
-
-            <div>
-                <span>YEAR 3</span>
-                <strong id="year3">AED 120,116</strong>
-            </div>
-
-            <div>
-                <span>YEAR 4</span>
-                <strong id="year4">AED 127,683</strong>
-            </div>
-
-            <div>
-                <span>YEAR 5</span>
-                <strong id="year5">AED 135,732</strong>
-            </div>
-
-        </div>
-
-
-        <div class="growth-chart-section">
-
-            <div class="growth-chart">
-
-                <div class="growth-column">
-                    <div id="growthBar1" class="growth-bar"></div>
-                    <span>Year 1</span>
+                    <strong id="portfolioValue">AED 106,300.00</strong>
                 </div>
 
-                <div class="growth-column">
-                    <div id="growthBar2" class="growth-bar"></div>
-                    <span>Year 2</span>
+
+                <div class="result">
+                    <span data-en="Estimated Return"
+                          data-ar="العائد المتوقع">
+                        Estimated Return
+                    </span>
+
+                    <strong id="portfolioReturn">6.30%</strong>
                 </div>
 
-                <div class="growth-column">
-                    <div id="growthBar3" class="growth-bar"></div>
-                    <span>Year 3</span>
+
+                <div class="result">
+                    <span data-en="Estimated Profit / Loss"
+                          data-ar="الربح / الخسارة المتوقعة">
+                        Estimated Profit / Loss
+                    </span>
+
+                    <strong id="portfolioProfit">AED 6,300.00</strong>
                 </div>
 
-                <div class="growth-column">
-                    <div id="growthBar4" class="growth-bar"></div>
-                    <span>Year 4</span>
-                </div>
 
-                <div class="growth-column">
-                    <div id="growthBar5" class="growth-bar"></div>
-                    <span>Year 5</span>
+                <div class="result">
+                    <span data-en="Risk Level"
+                          data-ar="مستوى المخاطر">
+                        Risk Level
+                    </span>
+
+                    <strong id="riskLevel">Moderate</strong>
                 </div>
 
             </div>
 
-        </div>
-
-    </div>
-
-</section>
+        </section>
 
 
-<section id="learn" class="learn-section">
+        <!-- ALLOCATION -->
+        <section class="section allocation-section">
 
-    <div class="section-heading">
+            <div class="section-header">
+                <p class="eyebrow"
+                   data-en="ALLOCATION"
+                   data-ar="التوزيع">
+                    ALLOCATION
+                </p>
 
-        <p class="small-title">INVESTMENT BASICS</p>
+                <h2 data-en="Your Portfolio Allocation"
+                    data-ar="توزيع محفظتك">
+                    Your Portfolio Allocation
+                </h2>
+            </div>
 
-        <h2>Learn before you invest.</h2>
 
-    </div>
+            <div class="allocation-chart">
+
+                <div class="allocation-row">
+                    <div class="allocation-label">
+                        <span data-en="Stocks" data-ar="الأسهم">Stocks</span>
+                        <strong id="stocksPercent">60%</strong>
+                    </div>
+
+                    <div class="allocation-track">
+                        <div id="stocksBar" class="allocation-bar"></div>
+                    </div>
+                </div>
 
 
-    <div class="learn-grid">
+                <div class="allocation-row">
+                    <div class="allocation-label">
+                        <span data-en="Bonds" data-ar="السندات">Bonds</span>
+                        <strong id="bondsPercent">20%</strong>
+                    </div>
 
-        <div>
-            <span class="learn-number">01</span>
-            <h3>Diversification</h3>
-            <p>
-                Spreading money across different assets
-                can reduce reliance on one investment.
+                    <div class="allocation-track">
+                        <div id="bondsBar" class="allocation-bar"></div>
+                    </div>
+                </div>
+
+
+                <div class="allocation-row">
+                    <div class="allocation-label">
+                        <span data-en="Gold" data-ar="الذهب">Gold</span>
+                        <strong id="goldPercent">10%</strong>
+                    </div>
+
+                    <div class="allocation-track">
+                        <div id="goldBar" class="allocation-bar"></div>
+                    </div>
+                </div>
+
+
+                <div class="allocation-row">
+                    <div class="allocation-label">
+                        <span data-en="Cash" data-ar="النقد">Cash</span>
+                        <strong id="cashPercent">10%</strong>
+                    </div>
+
+                    <div class="allocation-track">
+                        <div id="cashBar" class="allocation-bar"></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="allocation-cards">
+
+                <div class="allocation-card">
+                    <span data-en="Stocks" data-ar="الأسهم">Stocks</span>
+                    <strong id="stocksAmount">AED 60,000</strong>
+                </div>
+
+                <div class="allocation-card">
+                    <span data-en="Bonds" data-ar="السندات">Bonds</span>
+                    <strong id="bondsAmount">AED 20,000</strong>
+                </div>
+
+                <div class="allocation-card">
+                    <span data-en="Gold" data-ar="الذهب">Gold</span>
+                    <strong id="goldAmount">AED 10,000</strong>
+                </div>
+
+                <div class="allocation-card">
+                    <span data-en="Cash" data-ar="النقد">Cash</span>
+                    <strong id="cashAmount">AED 10,000</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- GROWTH -->
+        <section id="growth" class="section growth-section">
+
+            <div class="section-header">
+                <p class="eyebrow"
+                   data-en="5-YEAR PROJECTION"
+                   data-ar="توقعات 5 سنوات">
+                    5-YEAR PROJECTION
+                </p>
+
+                <h2 data-en="Potential Portfolio Growth"
+                    data-ar="النمو المحتمل للمحفظة">
+                    Potential Portfolio Growth
+                </h2>
+
+                <p>
+                    <span data-en="Estimated annual growth:"
+                          data-ar="النمو السنوي المتوقع:">
+                        Estimated annual growth:
+                    </span>
+
+                    <strong id="growthRate">6.30%</strong>
+                </p>
+            </div>
+
+
+            <div class="growth-values">
+
+                <div>
+                    <span data-en="Year 1" data-ar="السنة 1">Year 1</span>
+                    <strong id="year1">AED 106,300</strong>
+                </div>
+
+                <div>
+                    <span data-en="Year 2" data-ar="السنة 2">Year 2</span>
+                    <strong id="year2">AED 112,997</strong>
+                </div>
+
+                <div>
+                    <span data-en="Year 3" data-ar="السنة 3">Year 3</span>
+                    <strong id="year3">AED 120,116</strong>
+                </div>
+
+                <div>
+                    <span data-en="Year 4" data-ar="السنة 4">Year 4</span>
+                    <strong id="year4">AED 127,683</strong>
+                </div>
+
+                <div>
+                    <span data-en="Year 5" data-ar="السنة 5">Year 5</span>
+                    <strong id="year5">AED 135,732</strong>
+                </div>
+
+            </div>
+
+
+            <div class="growth-chart-section">
+
+                <div class="growth-chart">
+
+                    <div class="growth-column">
+                        <div id="growthBar1" class="growth-bar"></div>
+                        <span data-en="Year 1" data-ar="السنة 1">Year 1</span>
+                    </div>
+
+                    <div class="growth-column">
+                        <div id="growthBar2" class="growth-bar"></div>
+                        <span data-en="Year 2" data-ar="السنة 2">Year 2</span>
+                    </div>
+
+                    <div class="growth-column">
+                        <div id="growthBar3" class="growth-bar"></div>
+                        <span data-en="Year 3" data-ar="السنة 3">Year 3</span>
+                    </div>
+
+                    <div class="growth-column">
+                        <div id="growthBar4" class="growth-bar"></div>
+                        <span data-en="Year 4" data-ar="السنة 4">Year 4</span>
+                    </div>
+
+                    <div class="growth-column">
+                        <div id="growthBar5" class="growth-bar"></div>
+                        <span data-en="Year 5" data-ar="السنة 5">Year 5</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LEARN -->
+        <section id="learn" class="section learn-section">
+
+            <div class="section-header">
+                <p class="eyebrow"
+                   data-en="LEARN"
+                   data-ar="تعلّم">
+                    LEARN
+                </p>
+
+                <h2 data-en="Investment Basics"
+                    data-ar="أساسيات الاستثمار">
+                    Investment Basics
+                </h2>
+            </div>
+
+
+            <div class="learn-grid">
+
+                <div class="learn-card">
+                    <h3 data-en="Diversification"
+                        data-ar="التنويع">
+                        Diversification
+                    </h3>
+
+                    <p data-en="Spreading investments across different assets can help reduce the impact of one investment performing poorly."
+                       data-ar="يمكن أن يساعد توزيع الاستثمارات على أصول مختلفة في تقليل تأثير انخفاض أداء استثمار واحد.">
+                        Spreading investments across different assets can help reduce the impact of one investment performing poorly.
+                    </p>
+                </div>
+
+
+                <div class="learn-card">
+                    <h3 data-en="Risk"
+                        data-ar="المخاطر">
+                        Risk
+                    </h3>
+
+                    <p data-en="Different investments have different levels of risk. Higher potential returns often come with greater uncertainty."
+                       data-ar="تختلف مستويات المخاطر بين الاستثمارات. وغالبًا ما تأتي العوائد المحتملة الأعلى مع قدر أكبر من عدم اليقين.">
+                        Different investments have different levels of risk. Higher potential returns often come with greater uncertainty.
+                    </p>
+                </div>
+
+
+                <div class="learn-card">
+                    <h3 data-en="Compound Growth"
+                        data-ar="النمو المركب">
+                        Compound Growth
+                    </h3>
+
+                    <p data-en="Compound growth occurs when returns are added to an investment and future returns are calculated on the larger amount."
+                       data-ar="يحدث النمو المركب عندما تضاف العوائد إلى الاستثمار ويتم احتساب العوائد المستقبلية على المبلغ الأكبر.">
+                        Compound growth occurs when returns are added to an investment and future returns are calculated on the larger amount.
+                    </p>
+                </div>
+
+
+                <div class="learn-card">
+                    <h3 data-en="Asset Allocation"
+                        data-ar="توزيع الأصول">
+                        Asset Allocation
+                    </h3>
+
+                    <p data-en="Asset allocation means deciding how much of a portfolio should be invested in different asset categories."
+                       data-ar="يعني توزيع الأصول تحديد النسبة التي سيتم استثمارها في فئات الأصول المختلفة.">
+                        Asset allocation means deciding how much of a portfolio should be invested in different asset categories.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DISCLAIMER -->
+        <section class="disclaimer">
+
+            <strong data-en="Educational Disclaimer"
+                    data-ar="إخلاء مسؤولية تعليمي">
+                Educational Disclaimer
+            </strong>
+
+            <p data-en="PortfolioLab UAE is an educational project. The return assumptions are fictional and are not financial advice, investment recommendations, or guarantees of future performance."
+               data-ar="PortfolioLab UAE هو مشروع تعليمي. افتراضات العوائد المستخدمة افتراضية وليست نصيحة مالية أو توصيات استثمارية أو ضمانات للأداء المستقبلي.">
+                PortfolioLab UAE is an educational project. The return assumptions are fictional and are not financial advice, investment recommendations, or guarantees of future performance.
             </p>
-        </div>
 
-        <div>
-            <span class="learn-number">02</span>
-            <h3>Risk</h3>
-            <p>
-                Investments can rise or fall in value.
-                Higher potential returns can come with
-                greater uncertainty.
-            </p>
-        </div>
+        </section>
 
-        <div>
-            <span class="learn-number">03</span>
-            <h3>Asset Allocation</h3>
-            <p>
-                Asset allocation describes how a portfolio
-                is divided between different investments.
-            </p>
-        </div>
-
-        <div>
-            <span class="learn-number">04</span>
-            <h3>Long-Term Growth</h3>
-            <p>
-                Time can affect how investment returns
-                accumulate and compound.
-            </p>
-        </div>
-
-    </div>
-
-</section>
+    </main>
 
 
-<section class="disclaimer-section">
-
-    <p>
-        <strong>Educational use only.</strong>
-        This simulator uses fictional assumptions to
-        demonstrate investment concepts. It does not
-        represent financial advice or guaranteed returns.
-    </p>
-
-</section>
-
-</main>
+    <footer>
+        <p>© 2026 Fatima Almazrouei</p>
+    </footer>
 
 
-<footer>
-
-    <h3>PortfolioLab UAE</h3>
-
-    <p>
-        Exploring investing through education and simulation.
-    </p>
-
-    <p class="copyright">
-        © 2026 Fatima Almazrouei
-    </p>
-
-</footer>
-
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
-
 </html>

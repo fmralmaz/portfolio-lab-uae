@@ -1,17 +1,37 @@
 function calculatePortfolio() {
 
-    // Get the percentages entered by the user
-    const stocks = parseFloat(document.getElementById("stocks").value) || 0;
-    const bonds = parseFloat(document.getElementById("bonds").value) || 0;
-    const gold = parseFloat(document.getElementById("gold").value) || 0;
-    const cash = parseFloat(document.getElementById("cash").value) || 0;
+    // =========================
+    // GET USER INPUTS
+    // =========================
 
-    // Total allocation
-    const total = stocks + bonds + gold + cash;
+    const stocks =
+        parseFloat(document.getElementById("stocks").value) || 0;
 
-    const message = document.getElementById("allocationMessage");
+    const bonds =
+        parseFloat(document.getElementById("bonds").value) || 0;
 
-    // Check for negative values
+    const gold =
+        parseFloat(document.getElementById("gold").value) || 0;
+
+    const cash =
+        parseFloat(document.getElementById("cash").value) || 0;
+
+
+    // =========================
+    // TOTAL ALLOCATION
+    // =========================
+
+    const total =
+        stocks + bonds + gold + cash;
+
+    const message =
+        document.getElementById("allocationMessage");
+
+
+    // =========================
+    // VALIDATION
+    // =========================
+
     if (
         stocks < 0 ||
         bonds < 0 ||
@@ -24,7 +44,7 @@ function calculatePortfolio() {
         return;
     }
 
-    // Make sure allocation equals 100%
+
     if (total !== 100) {
         message.textContent =
             "Your allocation must add up to exactly 100%.";
@@ -32,31 +52,52 @@ function calculatePortfolio() {
         return;
     }
 
-    // Fictional educational annual return assumptions
+
+    // =========================
+    // EDUCATIONAL RETURN
+    // ASSUMPTIONS
+    // =========================
+
     const stockReturn = 8;
     const bondReturn = 4;
     const goldReturn = 5;
     const cashReturn = 2;
 
-    // Calculate estimated portfolio return
+
+    // =========================
+    // PORTFOLIO RETURN
+    // =========================
+
     const portfolioReturn =
         (stocks / 100) * stockReturn +
         (bonds / 100) * bondReturn +
         (gold / 100) * goldReturn +
         (cash / 100) * cashReturn;
 
-    // Starting portfolio
+
+    // =========================
+    // STARTING PORTFOLIO
+    // =========================
+
     const startingAmount = 100000;
 
-    // Estimated one-year profit
-    const profit =
-        startingAmount * (portfolioReturn / 100);
 
-    // Estimated one-year value
+    // =========================
+    // ONE-YEAR VALUE
+    // =========================
+
+    const profit =
+        startingAmount *
+        (portfolioReturn / 100);
+
     const finalValue =
         startingAmount + profit;
 
-    // Determine risk level
+
+    // =========================
+    // RISK LEVEL
+    // =========================
+
     let riskLevel;
 
     if (stocks >= 70) {
@@ -67,7 +108,11 @@ function calculatePortfolio() {
         riskLevel = "Lower";
     }
 
-    // Calculate amount invested in each asset
+
+    // =========================
+    // ASSET AMOUNTS
+    // =========================
+
     const stocksAmount =
         startingAmount * (stocks / 100);
 
@@ -80,7 +125,11 @@ function calculatePortfolio() {
     const cashAmount =
         startingAmount * (cash / 100);
 
-    // Update main results
+
+    // =========================
+    // UPDATE MAIN RESULTS
+    // =========================
+
     document.getElementById("portfolioValue").textContent =
         finalValue.toLocaleString("en-US", {
             minimumFractionDigits: 2,
@@ -100,21 +149,31 @@ function calculatePortfolio() {
         riskLevel;
 
 
-    // Update allocation cards
+    // =========================
+    // UPDATE ALLOCATION CARDS
+    // =========================
+
     document.getElementById("stocksAmount").textContent =
-        "AED " + stocksAmount.toLocaleString("en-US");
+        "AED " +
+        stocksAmount.toLocaleString("en-US");
 
     document.getElementById("bondsAmount").textContent =
-        "AED " + bondsAmount.toLocaleString("en-US");
+        "AED " +
+        bondsAmount.toLocaleString("en-US");
 
     document.getElementById("goldAmount").textContent =
-        "AED " + goldAmount.toLocaleString("en-US");
+        "AED " +
+        goldAmount.toLocaleString("en-US");
 
     document.getElementById("cashAmount").textContent =
-        "AED " + cashAmount.toLocaleString("en-US");
+        "AED " +
+        cashAmount.toLocaleString("en-US");
 
 
-    // Update allocation chart
+    // =========================
+    // UPDATE ALLOCATION CHART
+    // =========================
+
     document.getElementById("stocksBar").style.width =
         stocks + "%";
 
@@ -128,7 +187,10 @@ function calculatePortfolio() {
         cash + "%";
 
 
-    // Update chart percentages
+    // =========================
+    // UPDATE CHART PERCENTAGES
+    // =========================
+
     document.getElementById("stocksPercent").textContent =
         stocks + "%";
 
@@ -146,14 +208,21 @@ function calculatePortfolio() {
     // 5-YEAR COMPOUND GROWTH
     // =========================
 
-    const annualRate = portfolioReturn / 100;
+    const annualRate =
+        portfolioReturn / 100;
 
-    let growthValue = startingAmount;
+    let growthValue =
+        startingAmount;
+
+    const growthValues = [];
+
 
     for (let year = 1; year <= 5; year++) {
 
         growthValue =
             growthValue * (1 + annualRate);
+
+        growthValues.push(growthValue);
 
         document.getElementById("year" + year).textContent =
             "AED " +
@@ -161,12 +230,40 @@ function calculatePortfolio() {
     }
 
 
-    // Update growth section return
+    // =========================
+    // UPDATE GROWTH RATE
+    // =========================
+
     document.getElementById("growthRate").textContent =
         portfolioReturn.toFixed(2) + "%";
 
 
-    // Success message
+    // =========================
+    // UPDATE GROWTH CHART
+    // =========================
+
+    const maximumValue =
+        Math.max(...growthValues);
+
+    growthValues.forEach(function(value, index) {
+
+        const bar =
+            document.getElementById(
+                "growthBar" + (index + 1)
+            );
+
+        const height =
+            (value / maximumValue) * 100;
+
+        bar.style.height =
+            height + "%";
+    });
+
+
+    // =========================
+    // SUCCESS MESSAGE
+    // =========================
+
     message.textContent =
         "Portfolio allocation successfully calculated.";
 }

@@ -1,79 +1,89 @@
-// =========================
-// GET ELEMENTS
-// =========================
-
 const stocksInput = document.getElementById("stocks");
 const bondsInput = document.getElementById("bonds");
 const goldInput = document.getElementById("gold");
 const cashInput = document.getElementById("cash");
 
-const conservativeButton =
-    document.getElementById("conservativeButton");
+const conservativeButton = document.getElementById("conservativeButton");
+const balancedButton = document.getElementById("balancedButton");
+const growthButton = document.getElementById("growthButton");
+const calculateButton = document.getElementById("calculateButton");
 
-const balancedButton =
-    document.getElementById("balancedButton");
+const languageButton = document.getElementById("languageButton");
 
-const growthButton =
-    document.getElementById("growthButton");
-
-const calculateButton =
-    document.getElementById("calculateButton");
+let currentLanguage = "en";
 
 
-// =========================
-// PRESET BUTTONS
-// =========================
+// ===============================
+// LANGUAGE SYSTEM
+// ===============================
 
-conservativeButton.addEventListener("click", function() {
+function updateLanguage() {
+    const elements = document.querySelectorAll("[data-en][data-ar]");
 
+    elements.forEach((element) => {
+        element.textContent = currentLanguage === "en"
+            ? element.getAttribute("data-en")
+            : element.getAttribute("data-ar");
+    });
+
+    if (currentLanguage === "en") {
+        document.documentElement.lang = "en";
+        document.body.classList.remove("rtl");
+        languageButton.textContent = "العربية";
+    } else {
+        document.documentElement.lang = "ar";
+        document.body.classList.add("rtl");
+        languageButton.textContent = "English";
+    }
+}
+
+
+languageButton.addEventListener("click", () => {
+    currentLanguage = currentLanguage === "en" ? "ar" : "en";
+    updateLanguage();
+});
+
+
+// ===============================
+// PORTFOLIO PRESETS
+// ===============================
+
+conservativeButton.addEventListener("click", () => {
     stocksInput.value = 20;
     bondsInput.value = 40;
     goldInput.value = 10;
     cashInput.value = 30;
 
     calculatePortfolio();
-
 });
 
 
-balancedButton.addEventListener("click", function() {
-
+balancedButton.addEventListener("click", () => {
     stocksInput.value = 50;
     bondsInput.value = 25;
     goldInput.value = 10;
     cashInput.value = 15;
 
     calculatePortfolio();
-
 });
 
 
-growthButton.addEventListener("click", function() {
-
+growthButton.addEventListener("click", () => {
     stocksInput.value = 70;
     bondsInput.value = 15;
     goldInput.value = 10;
     cashInput.value = 5;
 
     calculatePortfolio();
-
 });
 
 
-// =========================
-// CALCULATE BUTTON
-// =========================
-
-calculateButton.addEventListener("click", function() {
-
-    calculatePortfolio();
-
-});
+calculateButton.addEventListener("click", calculatePortfolio);
 
 
-// =========================
-// CALCULATE PORTFOLIO
-// =========================
+// ===============================
+// PORTFOLIO CALCULATOR
+// ===============================
 
 function calculatePortfolio() {
 
@@ -82,13 +92,11 @@ function calculatePortfolio() {
     const gold = Number(goldInput.value);
     const cash = Number(cashInput.value);
 
-    const total =
-        stocks + bonds + gold + cash;
+    const totalAllocation = stocks + bonds + gold + cash;
 
+    const message = document.getElementById("allocationMessage");
 
-    const message =
-        document.getElementById("allocationMessage");
-
+    // Validate allocation
 
     if (
         stocks < 0 ||
@@ -96,32 +104,35 @@ function calculatePortfolio() {
         gold < 0 ||
         cash < 0
     ) {
-
-        message.textContent =
-            "Percentages cannot be negative.";
+        message.textContent = currentLanguage === "en"
+            ? "Percentages cannot be negative."
+            : "لا يمكن أن تكون النسب مئوية سالبة.";
 
         return;
-
     }
 
 
-    if (total !== 100) {
+    if (totalAllocation !== 100) {
 
-        message.textContent =
-            "Your allocation must add up to exactly 100%.";
+        message.textContent = currentLanguage === "en"
+            ? `Your allocation must equal 100%. Current total: ${totalAllocation}%.`
+            : `يجب أن يكون مجموع التوزيع 100٪. المجموع الحالي: ${totalAllocation}٪.`;
 
         return;
-
     }
 
 
-    // Fictional educational assumptions
+    // Fictional educational return assumptions
 
     const stockReturn = 8;
     const bondReturn = 4;
     const goldReturn = 5;
     const cashReturn = 2;
 
+    const startingAmount = 100000;
+
+
+    // Weighted portfolio return
 
     const portfolioReturn =
         (stocks / 100) * stockReturn +
@@ -130,180 +141,146 @@ function calculatePortfolio() {
         (cash / 100) * cashReturn;
 
 
-    const startingAmount = 100000;
+    const profit = startingAmount * (portfolioReturn / 100);
+    const finalValue = startingAmount + profit;
 
 
-    const profit =
-        startingAmount * portfolioReturn / 100;
-
-    const finalValue =
-        startingAmount + profit;
-
-
-    // Risk
+    // Risk level
 
     let riskLevel;
 
     if (stocks >= 70) {
-
-        riskLevel = "High";
-
+        riskLevel = currentLanguage === "en"
+            ? "High"
+            : "مرتفع";
     } else if (stocks >= 40) {
-
-        riskLevel = "Moderate";
-
+        riskLevel = currentLanguage === "en"
+            ? "Moderate"
+            : "متوسط";
     } else {
-
-        riskLevel = "Lower";
-
+        riskLevel = currentLanguage === "en"
+            ? "Lower"
+            : "أقل";
     }
 
 
-    // Asset amounts
-
-    const stocksAmount =
-        startingAmount * stocks / 100;
-
-    const bondsAmount =
-        startingAmount * bonds / 100;
-
-    const goldAmount =
-        startingAmount * gold / 100;
-
-    const cashAmount =
-        startingAmount * cash / 100;
-
-
-    // Results
+    // ===============================
+    // UPDATE RESULTS
+    // ===============================
 
     document.getElementById("portfolioValue").textContent =
-        finalValue.toLocaleString("en-US", {
+        `AED ${finalValue.toLocaleString("en-US", {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
-        });
+        })}`;
 
 
     document.getElementById("portfolioReturn").textContent =
-        portfolioReturn.toFixed(2) + "%";
+        `${portfolioReturn.toFixed(2)}%`;
 
 
     document.getElementById("portfolioProfit").textContent =
-        profit.toLocaleString("en-US", {
+        `AED ${profit.toLocaleString("en-US", {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
-        });
+        })}`;
 
 
-    document.getElementById("riskLevel").textContent =
-        riskLevel;
+    document.getElementById("riskLevel").textContent = riskLevel;
 
 
-    // Allocation cards
+    // ===============================
+    // ALLOCATION CHART
+    // ===============================
+
+    document.getElementById("stocksBar").style.width = `${stocks}%`;
+    document.getElementById("bondsBar").style.width = `${bonds}%`;
+    document.getElementById("goldBar").style.width = `${gold}%`;
+    document.getElementById("cashBar").style.width = `${cash}%`;
+
+
+    document.getElementById("stocksPercent").textContent = `${stocks}%`;
+    document.getElementById("bondsPercent").textContent = `${bonds}%`;
+    document.getElementById("goldPercent").textContent = `${gold}%`;
+    document.getElementById("cashPercent").textContent = `${cash}%`;
+
+
+    // ===============================
+    // ALLOCATION AMOUNTS
+    // ===============================
 
     document.getElementById("stocksAmount").textContent =
-        "AED " + stocksAmount.toLocaleString("en-US");
+        `AED ${(startingAmount * stocks / 100).toLocaleString("en-US")}`;
 
     document.getElementById("bondsAmount").textContent =
-        "AED " + bondsAmount.toLocaleString("en-US");
+        `AED ${(startingAmount * bonds / 100).toLocaleString("en-US")}`;
 
     document.getElementById("goldAmount").textContent =
-        "AED " + goldAmount.toLocaleString("en-US");
+        `AED ${(startingAmount * gold / 100).toLocaleString("en-US")}`;
 
     document.getElementById("cashAmount").textContent =
-        "AED " + cashAmount.toLocaleString("en-US");
+        `AED ${(startingAmount * cash / 100).toLocaleString("en-US")}`;
 
 
-    // Allocation chart
+    // ===============================
+    // 5-YEAR COMPOUND GROWTH
+    // ===============================
 
-    document.getElementById("stocksBar").style.width =
-        stocks + "%";
+    const growthRate = portfolioReturn / 100;
 
-    document.getElementById("bondsBar").style.width =
-        bonds + "%";
-
-    document.getElementById("goldBar").style.width =
-        gold + "%";
-
-    document.getElementById("cashBar").style.width =
-        cash + "%";
+    document.getElementById("growthRate").textContent =
+        `${portfolioReturn.toFixed(2)}%`;
 
 
-    // Percentages
-
-    document.getElementById("stocksPercent").textContent =
-        stocks + "%";
-
-    document.getElementById("bondsPercent").textContent =
-        bonds + "%";
-
-    document.getElementById("goldPercent").textContent =
-        gold + "%";
-
-    document.getElementById("cashPercent").textContent =
-        cash + "%";
-
-
-    // =========================
-    // 5-YEAR GROWTH
-    // =========================
-
-    const annualRate =
-        portfolioReturn / 100;
-
-    let growthValue =
-        startingAmount;
-
-    const growthValues = [];
-
+    const yearlyValues = [];
 
     for (let year = 1; year <= 5; year++) {
 
-        growthValue =
-            growthValue * (1 + annualRate);
+        const value =
+            startingAmount * Math.pow(1 + growthRate, year);
 
-        growthValues.push(growthValue);
+        yearlyValues.push(value);
 
-        document.getElementById(
-            "year" + year
-        ).textContent =
-            "AED " +
-            Math.round(growthValue).toLocaleString("en-US");
-
+        document.getElementById(`year${year}`).textContent =
+            `AED ${value.toLocaleString("en-US", {
+                maximumFractionDigits: 0
+            })}`;
     }
 
 
-    document.getElementById("growthRate").textContent =
-        portfolioReturn.toFixed(2) + "%";
+    // ===============================
+    // GROWTH CHART
+    // ===============================
 
+    const maxGrowth = yearlyValues[4];
 
-    // Growth chart
+    yearlyValues.forEach((value, index) => {
 
-    const maximumValue =
-        Math.max(...growthValues);
+        const percentage =
+            (value / maxGrowth) * 100;
 
-
-    growthValues.forEach(function(value, index) {
-
-        const bar =
-            document.getElementById(
-                "growthBar" + (index + 1)
-            );
-
-        const height =
-            (value / maximumValue) * 100;
-
-        bar.style.height =
-            height + "%";
-
+        document.getElementById(`growthBar${index + 1}`)
+            .style.height = `${percentage}%`;
     });
 
 
-    message.textContent =
-        "Portfolio successfully calculated.";
+    // Success message
 
+    message.textContent = currentLanguage === "en"
+        ? "Portfolio calculated successfully."
+        : "تم حساب المحفظة بنجاح.";
 }
 
 
-// Calculate default portfolio
+// ===============================
+// INITIAL CALCULATION
+// ===============================
 
 calculatePortfolio();
+
+
+// ===============================
+// INITIAL LANGUAGE
+// ===============================
+
+updateLanguage();

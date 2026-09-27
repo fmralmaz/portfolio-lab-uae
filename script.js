@@ -1,8 +1,63 @@
-function calculatePortfolio() {
+// =========================
+// PORTFOLIO PRESETS
+// =========================
 
-    // =========================
-    // GET USER INPUTS
-    // =========================
+function applyPreset(type) {
+
+    const stocks =
+        document.getElementById("stocks");
+
+    const bonds =
+        document.getElementById("bonds");
+
+    const gold =
+        document.getElementById("gold");
+
+    const cash =
+        document.getElementById("cash");
+
+
+    if (type === "conservative") {
+
+        stocks.value = 20;
+        bonds.value = 40;
+        gold.value = 10;
+        cash.value = 30;
+
+    }
+
+
+    if (type === "balanced") {
+
+        stocks.value = 50;
+        bonds.value = 25;
+        gold.value = 10;
+        cash.value = 15;
+
+    }
+
+
+    if (type === "growth") {
+
+        stocks.value = 70;
+        bonds.value = 15;
+        gold.value = 10;
+        cash.value = 5;
+
+    }
+
+
+    document.getElementById("allocationMessage").textContent =
+        "Preset selected. Click Calculate portfolio to see the results.";
+}
+
+
+
+// =========================
+// CALCULATE PORTFOLIO
+// =========================
+
+function calculatePortfolio() {
 
     const stocks =
         parseFloat(document.getElementById("stocks").value) || 0;
@@ -17,10 +72,6 @@ function calculatePortfolio() {
         parseFloat(document.getElementById("cash").value) || 0;
 
 
-    // =========================
-    // TOTAL ALLOCATION
-    // =========================
-
     const total =
         stocks + bonds + gold + cash;
 
@@ -28,9 +79,7 @@ function calculatePortfolio() {
         document.getElementById("allocationMessage");
 
 
-    // =========================
-    // VALIDATION
-    // =========================
+    // Validation
 
     if (
         stocks < 0 ||
@@ -38,6 +87,7 @@ function calculatePortfolio() {
         gold < 0 ||
         cash < 0
     ) {
+
         message.textContent =
             "Percentages cannot be negative.";
 
@@ -46,6 +96,7 @@ function calculatePortfolio() {
 
 
     if (total !== 100) {
+
         message.textContent =
             "Your allocation must add up to exactly 100%.";
 
@@ -53,10 +104,7 @@ function calculatePortfolio() {
     }
 
 
-    // =========================
-    // EDUCATIONAL RETURN
-    // ASSUMPTIONS
-    // =========================
+    // Fictional educational return assumptions
 
     const stockReturn = 8;
     const bondReturn = 4;
@@ -64,9 +112,7 @@ function calculatePortfolio() {
     const cashReturn = 2;
 
 
-    // =========================
-    // PORTFOLIO RETURN
-    // =========================
+    // Weighted annual return
 
     const portfolioReturn =
         (stocks / 100) * stockReturn +
@@ -75,16 +121,10 @@ function calculatePortfolio() {
         (cash / 100) * cashReturn;
 
 
-    // =========================
-    // STARTING PORTFOLIO
-    // =========================
-
     const startingAmount = 100000;
 
 
-    // =========================
-    // ONE-YEAR VALUE
-    // =========================
+    // One-year result
 
     const profit =
         startingAmount *
@@ -94,24 +134,25 @@ function calculatePortfolio() {
         startingAmount + profit;
 
 
-    // =========================
-    // RISK LEVEL
-    // =========================
+    // Risk level
 
     let riskLevel;
 
     if (stocks >= 70) {
+
         riskLevel = "High";
+
     } else if (stocks >= 40) {
+
         riskLevel = "Moderate";
+
     } else {
+
         riskLevel = "Lower";
     }
 
 
-    // =========================
-    // ASSET AMOUNTS
-    // =========================
+    // Asset amounts
 
     const stocksAmount =
         startingAmount * (stocks / 100);
@@ -126,9 +167,7 @@ function calculatePortfolio() {
         startingAmount * (cash / 100);
 
 
-    // =========================
-    // UPDATE MAIN RESULTS
-    // =========================
+    // Main results
 
     document.getElementById("portfolioValue").textContent =
         finalValue.toLocaleString("en-US", {
@@ -136,8 +175,10 @@ function calculatePortfolio() {
             maximumFractionDigits: 2
         });
 
+
     document.getElementById("portfolioReturn").textContent =
         portfolioReturn.toFixed(2) + "%";
+
 
     document.getElementById("portfolioProfit").textContent =
         profit.toLocaleString("en-US", {
@@ -145,13 +186,12 @@ function calculatePortfolio() {
             maximumFractionDigits: 2
         });
 
+
     document.getElementById("riskLevel").textContent =
         riskLevel;
 
 
-    // =========================
-    // UPDATE ALLOCATION CARDS
-    // =========================
+    // Allocation cards
 
     document.getElementById("stocksAmount").textContent =
         "AED " +
@@ -170,9 +210,7 @@ function calculatePortfolio() {
         cashAmount.toLocaleString("en-US");
 
 
-    // =========================
-    // UPDATE ALLOCATION CHART
-    // =========================
+    // Allocation chart
 
     document.getElementById("stocksBar").style.width =
         stocks + "%";
@@ -187,9 +225,7 @@ function calculatePortfolio() {
         cash + "%";
 
 
-    // =========================
-    // UPDATE CHART PERCENTAGES
-    // =========================
+    // Allocation percentages
 
     document.getElementById("stocksPercent").textContent =
         stocks + "%";
@@ -224,26 +260,26 @@ function calculatePortfolio() {
 
         growthValues.push(growthValue);
 
+
         document.getElementById("year" + year).textContent =
             "AED " +
             Math.round(growthValue).toLocaleString("en-US");
     }
 
 
-    // =========================
-    // UPDATE GROWTH RATE
-    // =========================
+    // Growth rate
 
     document.getElementById("growthRate").textContent =
         portfolioReturn.toFixed(2) + "%";
 
 
     // =========================
-    // UPDATE GROWTH CHART
+    // GROWTH CHART
     // =========================
 
     const maximumValue =
         Math.max(...growthValues);
+
 
     growthValues.forEach(function(value, index) {
 
@@ -260,10 +296,19 @@ function calculatePortfolio() {
     });
 
 
-    // =========================
-    // SUCCESS MESSAGE
-    // =========================
+    // Success message
 
     message.textContent =
         "Portfolio allocation successfully calculated.";
 }
+
+
+// =========================
+// LOAD DEFAULT PORTFOLIO
+// =========================
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    calculatePortfolio();
+
+});

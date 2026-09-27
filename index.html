@@ -4,778 +4,507 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>PortfolioLab UAE | Investment Simulator</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Navigation -->
+<nav>
+    <div class="logo">PortfolioLab UAE</div>
 
-    <nav>
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#simulator">Simulator</a>
+        <a href="#growth">Growth</a>
+        <a href="#learn">Learn</a>
+    </div>
+</nav>
 
-        <div class="logo">
-            PortfolioLab UAE
-        </div>
 
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#simulator">Simulator</a>
-            <a href="#growth">Growth</a>
-            <a href="#learn">Learn</a>
-        </div>
+<header id="home">
 
-    </nav>
+    <div class="hero-content">
 
+        <p class="tagline">INVESTMENT EDUCATION • UAE</p>
 
-    <!-- Hero -->
+        <h1>
+            Build a portfolio.<br>
+            Understand the risk.
+        </h1>
 
-    <header id="home">
+        <p class="hero-text">
+            An educational investment simulator that helps
+            students explore diversification, portfolio
+            allocation and potential growth.
+        </p>
 
-        <div class="hero-content">
+        <a href="#simulator" class="button">
+            Start simulating →
+        </a>
 
-            <p class="tagline">
-                INVESTMENT EDUCATION • UAE
-            </p>
+    </div>
 
-            <h1>
-                Build a portfolio.<br>
-                Understand the risk.
-            </h1>
+</header>
 
-            <p class="hero-text">
-                An educational investment simulator that helps
-                students explore diversification, portfolio
-                allocation and potential growth.
-            </p>
 
-            <a href="#simulator" class="button">
-                Start simulating →
-            </a>
+<main>
 
-        </div>
+<section id="simulator">
 
-    </header>
+    <div class="section-heading">
 
+        <p class="small-title">PORTFOLIO SIMULATOR</p>
 
-    <main>
-
-        <!-- Simulator -->
-
-        <section id="simulator">
-
-            <div class="section-heading">
-
-                <p class="small-title">
-                    PORTFOLIO SIMULATOR
-                </p>
-
-                <h2>
-                    Start with AED 100,000.
-                </h2>
-
-                <p>
-                    Create a fictional portfolio and explore
-                    how different asset allocations can affect
-                    potential returns.
-                </p>
-
-            </div>
-
-
-            <div class="simulator-layout">
-
-                <!-- Inputs -->
-
-                <div class="simulator-card">
-
-                    <h3>
-                        Portfolio allocation
-                    </h3>
-
-                    <p class="card-description">
-                        Choose how you want to allocate your
-                        fictional AED 100,000 portfolio.
-                    </p>
-
-
-                    <!-- Presets -->
-
-                    <div class="preset-section">
-
-                        <p class="preset-title">
-                            TRY A PRESET
-                        </p>
-
-                        <div class="preset-buttons">
-
-                            <button
-                                type="button"
-                                class="preset-button"
-                                onclick="applyPreset('conservative')">
-                                Conservative
-                            </button>
-
-                            <button
-                                type="button"
-                                class="preset-button"
-                                onclick="applyPreset('balanced')">
-                                Balanced
-                            </button>
-
-                            <button
-                                type="button"
-                                class="preset-button"
-                                onclick="applyPreset('growth')">
-                                Growth
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <label>
-                        Stocks (%)
-
-                        <input
-                            type="number"
-                            id="stocks"
-                            value="60"
-                            min="0"
-                            max="100"
-                        >
-                    </label>
-
-
-                    <label>
-                        Bonds (%)
-
-                        <input
-                            type="number"
-                            id="bonds"
-                            value="20"
-                            min="0"
-                            max="100"
-                        >
-                    </label>
-
-
-                    <label>
-                        Gold (%)
-
-                        <input
-                            type="number"
-                            id="gold"
-                            value="10"
-                            min="0"
-                            max="100"
-                        >
-                    </label>
-
-
-                    <label>
-                        Cash (%)
-
-                        <input
-                            type="number"
-                            id="cash"
-                            value="10"
-                            min="0"
-                            max="100"
-                        >
-                    </label>
-
-
-                    <button onclick="calculatePortfolio()">
-                        Calculate portfolio
-                    </button>
-
-                    <p
-                        id="allocationMessage"
-                        class="allocation-message">
-                    </p>
-
-                </div>
-
-
-                <!-- Results -->
-
-                <div class="portfolio-result">
-
-                    <p class="result-label">
-                        PORTFOLIO VALUE
-                    </p>
-
-                    <h3>
-                        AED
-                        <span id="portfolioValue">
-                            100,000.00
-                        </span>
-                    </h3>
-
-                    <div class="result-line">
-
-                        <span>
-                            Estimated return
-                        </span>
-
-                        <strong id="portfolioReturn">
-                            0.00%
-                        </strong>
-
-                    </div>
-
-
-                    <div class="result-line">
-
-                        <span>
-                            Estimated profit/loss
-                        </span>
-
-                        <strong>
-                            AED
-                            <span id="portfolioProfit">
-                                0.00
-                            </span>
-                        </strong>
-
-                    </div>
-
-
-                    <div class="result-line">
-
-                        <span>
-                            Risk level
-                        </span>
-
-                        <strong id="riskLevel">
-                            Moderate
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- Allocation -->
-
-        <section class="allocation-section">
-
-            <div class="chart-container">
-
-                <h3>
-                    Portfolio allocation
-                </h3>
-
-
-                <div class="allocation-chart">
-
-                    <div
-                        id="stocksBar"
-                        class="chart-bar stocks-bar"
-                        style="width: 60%;">
-                    </div>
-
-                    <div
-                        id="bondsBar"
-                        class="chart-bar bonds-bar"
-                        style="width: 20%;">
-                    </div>
-
-                    <div
-                        id="goldBar"
-                        class="chart-bar gold-bar"
-                        style="width: 10%;">
-                    </div>
-
-                    <div
-                        id="cashBar"
-                        class="chart-bar cash-bar"
-                        style="width: 10%;">
-                    </div>
-
-                </div>
-
-
-                <div class="chart-legend">
-
-                    <div>
-                        <span class="legend-dot stocks-dot"></span>
-                        Stocks
-                        <strong id="stocksPercent">
-                            60%
-                        </strong>
-                    </div>
-
-                    <div>
-                        <span class="legend-dot bonds-dot"></span>
-                        Bonds
-                        <strong id="bondsPercent">
-                            20%
-                        </strong>
-                    </div>
-
-                    <div>
-                        <span class="legend-dot gold-dot"></span>
-                        Gold
-                        <strong id="goldPercent">
-                            10%
-                        </strong>
-                    </div>
-
-                    <div>
-                        <span class="legend-dot cash-dot"></span>
-                        Cash
-                        <strong id="cashPercent">
-                            10%
-                        </strong>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="section-heading">
-
-                <p class="small-title">
-                    YOUR ALLOCATION
-                </p>
-
-                <h2>
-                    Where is your money going?
-                </h2>
-
-            </div>
-
-
-            <div class="allocation-grid">
-
-                <div class="allocation-card">
-
-                    <span>
-                        STOCKS
-                    </span>
-
-                    <strong id="stocksAmount">
-                        AED 60,000
-                    </strong>
-
-                    <p>
-                        Higher potential growth with higher
-                        volatility.
-                    </p>
-
-                </div>
-
-
-                <div class="allocation-card">
-
-                    <span>
-                        BONDS
-                    </span>
-
-                    <strong id="bondsAmount">
-                        AED 20,000
-                    </strong>
-
-                    <p>
-                        Generally lower volatility than stocks.
-                    </p>
-
-                </div>
-
-
-                <div class="allocation-card">
-
-                    <span>
-                        GOLD
-                    </span>
-
-                    <strong id="goldAmount">
-                        AED 10,000
-                    </strong>
-
-                    <p>
-                        An asset that can diversify a portfolio.
-                    </p>
-
-                </div>
-
-
-                <div class="allocation-card">
-
-                    <span>
-                        CASH
-                    </span>
-
-                    <strong id="cashAmount">
-                        AED 10,000
-                    </strong>
-
-                    <p>
-                        Provides liquidity and avoids market
-                        exposure.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- Growth -->
-
-        <section id="growth" class="growth-section">
-
-            <div class="section-heading">
-
-                <p class="small-title">
-                    PORTFOLIO GROWTH
-                </p>
-
-                <h2>
-                    What could your portfolio look like over 5 years?
-                </h2>
-
-                <p>
-                    This educational projection uses the estimated
-                    annual return from your portfolio allocation.
-                </p>
-
-            </div>
-
-
-            <div class="growth-card">
-
-                <div class="growth-header">
-
-                    <div>
-
-                        <span>
-                            STARTING VALUE
-                        </span>
-
-                        <strong>
-                            AED 100,000
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            ESTIMATED ANNUAL RETURN
-                        </span>
-
-                        <strong id="growthRate">
-                            6.30%
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <div class="growth-years">
-
-                    <div>
-
-                        <span>
-                            YEAR 1
-                        </span>
-
-                        <strong id="year1">
-                            AED 106,300
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            YEAR 2
-                        </span>
-
-                        <strong id="year2">
-                            AED 112,997
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            YEAR 3
-                        </span>
-
-                        <strong id="year3">
-                            AED 120,116
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            YEAR 4
-                        </span>
-
-                        <strong id="year4">
-                            AED 127,683
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            YEAR 5
-                        </span>
-
-                        <strong id="year5">
-                            AED 135,732
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Growth Chart -->
-
-                <div class="growth-chart-section">
-
-                    <div class="growth-chart">
-
-                        <div class="growth-column">
-
-                            <div
-                                id="growthBar1"
-                                class="growth-bar">
-                            </div>
-
-                            <span>
-                                Year 1
-                            </span>
-
-                        </div>
-
-
-                        <div class="growth-column">
-
-                            <div
-                                id="growthBar2"
-                                class="growth-bar">
-                            </div>
-
-                            <span>
-                                Year 2
-                            </span>
-
-                        </div>
-
-
-                        <div class="growth-column">
-
-                            <div
-                                id="growthBar3"
-                                class="growth-bar">
-                            </div>
-
-                            <span>
-                                Year 3
-                            </span>
-
-                        </div>
-
-
-                        <div class="growth-column">
-
-                            <div
-                                id="growthBar4"
-                                class="growth-bar">
-                            </div>
-
-                            <span>
-                                Year 4
-                            </span>
-
-                        </div>
-
-
-                        <div class="growth-column">
-
-                            <div
-                                id="growthBar5"
-                                class="growth-bar">
-                            </div>
-
-                            <span>
-                                Year 5
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- Learn -->
-
-        <section id="learn" class="learn-section">
-
-            <div class="section-heading">
-
-                <p class="small-title">
-                    INVESTMENT BASICS
-                </p>
-
-                <h2>
-                    Learn before you invest.
-                </h2>
-
-            </div>
-
-
-            <div class="learn-grid">
-
-                <div>
-
-                    <span class="learn-number">
-                        01
-                    </span>
-
-                    <h3>
-                        Diversification
-                    </h3>
-
-                    <p>
-                        Spreading money across different assets
-                        can reduce reliance on one investment.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <span class="learn-number">
-                        02
-                    </span>
-
-                    <h3>
-                        Risk
-                    </h3>
-
-                    <p>
-                        Investments can rise or fall in value.
-                        Higher potential returns can come with
-                        greater uncertainty.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <span class="learn-number">
-                        03
-                    </span>
-
-                    <h3>
-                        Asset Allocation
-                    </h3>
-
-                    <p>
-                        Asset allocation describes how a portfolio
-                        is divided between different investments.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <span class="learn-number">
-                        04
-                    </span>
-
-                    <h3>
-                        Long-Term Growth
-                    </h3>
-
-                    <p>
-                        Time can affect how investment returns
-                        accumulate and compound.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- Disclaimer -->
-
-        <section class="disclaimer-section">
-
-            <p>
-
-                <strong>
-                    Educational use only.
-                </strong>
-
-                This simulator uses fictional assumptions to
-                demonstrate investment concepts. It does not
-                represent financial advice or guaranteed returns.
-
-            </p>
-
-        </section>
-
-    </main>
-
-
-    <!-- Footer -->
-
-    <footer>
-
-        <h3>
-            PortfolioLab UAE
-        </h3>
+        <h2>Start with AED 100,000.</h2>
 
         <p>
-            Exploring investing through education and simulation.
+            Create a fictional portfolio and explore
+            how different asset allocations can affect
+            potential returns.
         </p>
 
-        <p class="copyright">
-            © 2026 Fatima Almazrouei
+    </div>
+
+
+    <div class="simulator-layout">
+
+
+        <div class="simulator-card">
+
+            <h3>Portfolio allocation</h3>
+
+            <p class="card-description">
+                Choose how you want to allocate your
+                fictional AED 100,000 portfolio.
+            </p>
+
+
+            <div class="preset-section">
+
+                <p class="preset-title">
+                    TRY A PRESET
+                </p>
+
+                <div class="preset-buttons">
+
+                    <button
+                        type="button"
+                        class="preset-button"
+                        id="conservativeButton">
+                        Conservative
+                    </button>
+
+                    <button
+                        type="button"
+                        class="preset-button"
+                        id="balancedButton">
+                        Balanced
+                    </button>
+
+                    <button
+                        type="button"
+                        class="preset-button"
+                        id="growthButton">
+                        Growth
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <label>
+                Stocks (%)
+                <input
+                    type="number"
+                    id="stocks"
+                    value="60"
+                    min="0"
+                    max="100">
+            </label>
+
+
+            <label>
+                Bonds (%)
+                <input
+                    type="number"
+                    id="bonds"
+                    value="20"
+                    min="0"
+                    max="100">
+            </label>
+
+
+            <label>
+                Gold (%)
+                <input
+                    type="number"
+                    id="gold"
+                    value="10"
+                    min="0"
+                    max="100">
+            </label>
+
+
+            <label>
+                Cash (%)
+                <input
+                    type="number"
+                    id="cash"
+                    value="10"
+                    min="0"
+                    max="100">
+            </label>
+
+
+            <button
+                type="button"
+                id="calculateButton">
+                Calculate portfolio
+            </button>
+
+            <p
+                id="allocationMessage"
+                class="allocation-message">
+            </p>
+
+        </div>
+
+
+        <div class="portfolio-result">
+
+            <p class="result-label">
+                PORTFOLIO VALUE
+            </p>
+
+            <h3>
+                AED
+                <span id="portfolioValue">
+                    100,000.00
+                </span>
+            </h3>
+
+            <div class="result-line">
+                <span>Estimated return</span>
+                <strong id="portfolioReturn">0.00%</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Estimated profit/loss</span>
+
+                <strong>
+                    AED
+                    <span id="portfolioProfit">0.00</span>
+                </strong>
+            </div>
+
+            <div class="result-line">
+                <span>Risk level</span>
+                <strong id="riskLevel">Moderate</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="allocation-section">
+
+    <div class="chart-container">
+
+        <h3>Portfolio allocation</h3>
+
+        <div class="allocation-chart">
+
+            <div
+                id="stocksBar"
+                class="chart-bar stocks-bar"
+                style="width:60%;">
+            </div>
+
+            <div
+                id="bondsBar"
+                class="chart-bar bonds-bar"
+                style="width:20%;">
+            </div>
+
+            <div
+                id="goldBar"
+                class="chart-bar gold-bar"
+                style="width:10%;">
+            </div>
+
+            <div
+                id="cashBar"
+                class="chart-bar cash-bar"
+                style="width:10%;">
+            </div>
+
+        </div>
+
+
+        <div class="chart-legend">
+
+            <div>
+                <span class="legend-dot stocks-dot"></span>
+                Stocks
+                <strong id="stocksPercent">60%</strong>
+            </div>
+
+            <div>
+                <span class="legend-dot bonds-dot"></span>
+                Bonds
+                <strong id="bondsPercent">20%</strong>
+            </div>
+
+            <div>
+                <span class="legend-dot gold-dot"></span>
+                Gold
+                <strong id="goldPercent">10%</strong>
+            </div>
+
+            <div>
+                <span class="legend-dot cash-dot"></span>
+                Cash
+                <strong id="cashPercent">10%</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="section-heading">
+
+        <p class="small-title">YOUR ALLOCATION</p>
+
+        <h2>Where is your money going?</h2>
+
+    </div>
+
+
+    <div class="allocation-grid">
+
+        <div class="allocation-card">
+            <span>STOCKS</span>
+            <strong id="stocksAmount">AED 60,000</strong>
+            <p>Higher potential growth with higher volatility.</p>
+        </div>
+
+        <div class="allocation-card">
+            <span>BONDS</span>
+            <strong id="bondsAmount">AED 20,000</strong>
+            <p>Generally lower volatility than stocks.</p>
+        </div>
+
+        <div class="allocation-card">
+            <span>GOLD</span>
+            <strong id="goldAmount">AED 10,000</strong>
+            <p>An asset that can diversify a portfolio.</p>
+        </div>
+
+        <div class="allocation-card">
+            <span>CASH</span>
+            <strong id="cashAmount">AED 10,000</strong>
+            <p>Provides liquidity and avoids market exposure.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="growth" class="growth-section">
+
+    <div class="section-heading">
+
+        <p class="small-title">PORTFOLIO GROWTH</p>
+
+        <h2>
+            What could your portfolio look like over 5 years?
+        </h2>
+
+        <p>
+            This educational projection uses the estimated
+            annual return from your portfolio allocation.
         </p>
 
-    </footer>
+    </div>
 
 
-    <script src="script.js"></script>
+    <div class="growth-card">
+
+        <div class="growth-header">
+
+            <div>
+                <span>STARTING VALUE</span>
+                <strong>AED 100,000</strong>
+            </div>
+
+            <div>
+                <span>ESTIMATED ANNUAL RETURN</span>
+                <strong id="growthRate">6.30%</strong>
+            </div>
+
+        </div>
+
+
+        <div class="growth-years">
+
+            <div>
+                <span>YEAR 1</span>
+                <strong id="year1">AED 106,300</strong>
+            </div>
+
+            <div>
+                <span>YEAR 2</span>
+                <strong id="year2">AED 112,997</strong>
+            </div>
+
+            <div>
+                <span>YEAR 3</span>
+                <strong id="year3">AED 120,116</strong>
+            </div>
+
+            <div>
+                <span>YEAR 4</span>
+                <strong id="year4">AED 127,683</strong>
+            </div>
+
+            <div>
+                <span>YEAR 5</span>
+                <strong id="year5">AED 135,732</strong>
+            </div>
+
+        </div>
+
+
+        <div class="growth-chart-section">
+
+            <div class="growth-chart">
+
+                <div class="growth-column">
+                    <div id="growthBar1" class="growth-bar"></div>
+                    <span>Year 1</span>
+                </div>
+
+                <div class="growth-column">
+                    <div id="growthBar2" class="growth-bar"></div>
+                    <span>Year 2</span>
+                </div>
+
+                <div class="growth-column">
+                    <div id="growthBar3" class="growth-bar"></div>
+                    <span>Year 3</span>
+                </div>
+
+                <div class="growth-column">
+                    <div id="growthBar4" class="growth-bar"></div>
+                    <span>Year 4</span>
+                </div>
+
+                <div class="growth-column">
+                    <div id="growthBar5" class="growth-bar"></div>
+                    <span>Year 5</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="learn" class="learn-section">
+
+    <div class="section-heading">
+
+        <p class="small-title">INVESTMENT BASICS</p>
+
+        <h2>Learn before you invest.</h2>
+
+    </div>
+
+
+    <div class="learn-grid">
+
+        <div>
+            <span class="learn-number">01</span>
+            <h3>Diversification</h3>
+            <p>
+                Spreading money across different assets
+                can reduce reliance on one investment.
+            </p>
+        </div>
+
+        <div>
+            <span class="learn-number">02</span>
+            <h3>Risk</h3>
+            <p>
+                Investments can rise or fall in value.
+                Higher potential returns can come with
+                greater uncertainty.
+            </p>
+        </div>
+
+        <div>
+            <span class="learn-number">03</span>
+            <h3>Asset Allocation</h3>
+            <p>
+                Asset allocation describes how a portfolio
+                is divided between different investments.
+            </p>
+        </div>
+
+        <div>
+            <span class="learn-number">04</span>
+            <h3>Long-Term Growth</h3>
+            <p>
+                Time can affect how investment returns
+                accumulate and compound.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="disclaimer-section">
+
+    <p>
+        <strong>Educational use only.</strong>
+        This simulator uses fictional assumptions to
+        demonstrate investment concepts. It does not
+        represent financial advice or guaranteed returns.
+    </p>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <h3>PortfolioLab UAE</h3>
+
+    <p>
+        Exploring investing through education and simulation.
+    </p>
+
+    <p class="copyright">
+        © 2026 Fatima Almazrouei
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
 

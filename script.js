@@ -1,56 +1,74 @@
 // =========================
-// PORTFOLIO PRESETS
+// GET ELEMENTS
 // =========================
 
-function applyPreset(type) {
+const stocksInput = document.getElementById("stocks");
+const bondsInput = document.getElementById("bonds");
+const goldInput = document.getElementById("gold");
+const cashInput = document.getElementById("cash");
 
-    const stocks =
-        document.getElementById("stocks");
+const conservativeButton =
+    document.getElementById("conservativeButton");
 
-    const bonds =
-        document.getElementById("bonds");
+const balancedButton =
+    document.getElementById("balancedButton");
 
-    const gold =
-        document.getElementById("gold");
+const growthButton =
+    document.getElementById("growthButton");
 
-    const cash =
-        document.getElementById("cash");
-
-
-    if (type === "conservative") {
-
-        stocks.value = 20;
-        bonds.value = 40;
-        gold.value = 10;
-        cash.value = 30;
-
-    }
+const calculateButton =
+    document.getElementById("calculateButton");
 
 
-    if (type === "balanced") {
+// =========================
+// PRESET BUTTONS
+// =========================
 
-        stocks.value = 50;
-        bonds.value = 25;
-        gold.value = 10;
-        cash.value = 15;
+conservativeButton.addEventListener("click", function() {
 
-    }
+    stocksInput.value = 20;
+    bondsInput.value = 40;
+    goldInput.value = 10;
+    cashInput.value = 30;
 
+    calculatePortfolio();
 
-    if (type === "growth") {
-
-        stocks.value = 70;
-        bonds.value = 15;
-        gold.value = 10;
-        cash.value = 5;
-
-    }
+});
 
 
-    document.getElementById("allocationMessage").textContent =
-        "Preset selected. Click Calculate portfolio to see the results.";
-}
+balancedButton.addEventListener("click", function() {
 
+    stocksInput.value = 50;
+    bondsInput.value = 25;
+    goldInput.value = 10;
+    cashInput.value = 15;
+
+    calculatePortfolio();
+
+});
+
+
+growthButton.addEventListener("click", function() {
+
+    stocksInput.value = 70;
+    bondsInput.value = 15;
+    goldInput.value = 10;
+    cashInput.value = 5;
+
+    calculatePortfolio();
+
+});
+
+
+// =========================
+// CALCULATE BUTTON
+// =========================
+
+calculateButton.addEventListener("click", function() {
+
+    calculatePortfolio();
+
+});
 
 
 // =========================
@@ -59,27 +77,18 @@ function applyPreset(type) {
 
 function calculatePortfolio() {
 
-    const stocks =
-        parseFloat(document.getElementById("stocks").value) || 0;
-
-    const bonds =
-        parseFloat(document.getElementById("bonds").value) || 0;
-
-    const gold =
-        parseFloat(document.getElementById("gold").value) || 0;
-
-    const cash =
-        parseFloat(document.getElementById("cash").value) || 0;
-
+    const stocks = Number(stocksInput.value);
+    const bonds = Number(bondsInput.value);
+    const gold = Number(goldInput.value);
+    const cash = Number(cashInput.value);
 
     const total =
         stocks + bonds + gold + cash;
 
+
     const message =
         document.getElementById("allocationMessage");
 
-
-    // Validation
 
     if (
         stocks < 0 ||
@@ -92,6 +101,7 @@ function calculatePortfolio() {
             "Percentages cannot be negative.";
 
         return;
+
     }
 
 
@@ -101,18 +111,17 @@ function calculatePortfolio() {
             "Your allocation must add up to exactly 100%.";
 
         return;
+
     }
 
 
-    // Fictional educational return assumptions
+    // Fictional educational assumptions
 
     const stockReturn = 8;
     const bondReturn = 4;
     const goldReturn = 5;
     const cashReturn = 2;
 
-
-    // Weighted annual return
 
     const portfolioReturn =
         (stocks / 100) * stockReturn +
@@ -124,17 +133,14 @@ function calculatePortfolio() {
     const startingAmount = 100000;
 
 
-    // One-year result
-
     const profit =
-        startingAmount *
-        (portfolioReturn / 100);
+        startingAmount * portfolioReturn / 100;
 
     const finalValue =
         startingAmount + profit;
 
 
-    // Risk level
+    // Risk
 
     let riskLevel;
 
@@ -149,25 +155,26 @@ function calculatePortfolio() {
     } else {
 
         riskLevel = "Lower";
+
     }
 
 
     // Asset amounts
 
     const stocksAmount =
-        startingAmount * (stocks / 100);
+        startingAmount * stocks / 100;
 
     const bondsAmount =
-        startingAmount * (bonds / 100);
+        startingAmount * bonds / 100;
 
     const goldAmount =
-        startingAmount * (gold / 100);
+        startingAmount * gold / 100;
 
     const cashAmount =
-        startingAmount * (cash / 100);
+        startingAmount * cash / 100;
 
 
-    // Main results
+    // Results
 
     document.getElementById("portfolioValue").textContent =
         finalValue.toLocaleString("en-US", {
@@ -194,20 +201,16 @@ function calculatePortfolio() {
     // Allocation cards
 
     document.getElementById("stocksAmount").textContent =
-        "AED " +
-        stocksAmount.toLocaleString("en-US");
+        "AED " + stocksAmount.toLocaleString("en-US");
 
     document.getElementById("bondsAmount").textContent =
-        "AED " +
-        bondsAmount.toLocaleString("en-US");
+        "AED " + bondsAmount.toLocaleString("en-US");
 
     document.getElementById("goldAmount").textContent =
-        "AED " +
-        goldAmount.toLocaleString("en-US");
+        "AED " + goldAmount.toLocaleString("en-US");
 
     document.getElementById("cashAmount").textContent =
-        "AED " +
-        cashAmount.toLocaleString("en-US");
+        "AED " + cashAmount.toLocaleString("en-US");
 
 
     // Allocation chart
@@ -225,7 +228,7 @@ function calculatePortfolio() {
         cash + "%";
 
 
-    // Allocation percentages
+    // Percentages
 
     document.getElementById("stocksPercent").textContent =
         stocks + "%";
@@ -241,7 +244,7 @@ function calculatePortfolio() {
 
 
     // =========================
-    // 5-YEAR COMPOUND GROWTH
+    // 5-YEAR GROWTH
     // =========================
 
     const annualRate =
@@ -260,22 +263,20 @@ function calculatePortfolio() {
 
         growthValues.push(growthValue);
 
-
-        document.getElementById("year" + year).textContent =
+        document.getElementById(
+            "year" + year
+        ).textContent =
             "AED " +
             Math.round(growthValue).toLocaleString("en-US");
+
     }
 
-
-    // Growth rate
 
     document.getElementById("growthRate").textContent =
         portfolioReturn.toFixed(2) + "%";
 
 
-    // =========================
-    // GROWTH CHART
-    // =========================
+    // Growth chart
 
     const maximumValue =
         Math.max(...growthValues);
@@ -293,22 +294,16 @@ function calculatePortfolio() {
 
         bar.style.height =
             height + "%";
+
     });
 
 
-    // Success message
-
     message.textContent =
-        "Portfolio allocation successfully calculated.";
+        "Portfolio successfully calculated.";
+
 }
 
 
-// =========================
-// LOAD DEFAULT PORTFOLIO
-// =========================
+// Calculate default portfolio
 
-document.addEventListener("DOMContentLoaded", function() {
-
-    calculatePortfolio();
-
-});
+calculatePortfolio();
